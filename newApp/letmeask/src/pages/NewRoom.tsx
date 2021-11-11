@@ -5,6 +5,8 @@ import logoImg from '../assets/images/logo.svg'
 
 import { Button } from '../components/Button'
 
+import '../styles/auth.css'
+
 export function NewRoom(){
   return(
     <div id="page-auth">

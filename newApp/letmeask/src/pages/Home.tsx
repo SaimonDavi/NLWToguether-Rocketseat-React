@@ -6,6 +6,8 @@ import googleIconImg from '../assets/images/google-icon.svg'
 
 import { Button } from '../components/Button'
 
+import '../styles/auth.css'
+
 export function Home(){
   const navigate = useNavigate();
 
