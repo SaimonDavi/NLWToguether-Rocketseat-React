@@ -1,4 +1,5 @@
 /// <reference types="react-scripts" />
+
 REACT_APP_API_KEY="AIzaSyCGZiRqxSqBI5f3LLOUOCUByxMiIwezTyM"
 REACT_APP_AUTH_DOMAIN="nlwtoguether-rocketseat-react.firebaseapp.com"
 REACT_APP_DATABASE_URL="https://nlwtoguether-rocketseat-react-default-rtdb.firebaseio.com"

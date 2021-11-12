@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
-import { firebase, auth } from '../services/firebase'
+import { auth } from '../services/firebase'
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
@@ -12,13 +13,19 @@ import '../styles/auth.css'
 
 export function Home(){
   const navigate = useNavigate();
-
-  function handleCreateRoom() {
-    // const provider = new firebase.auth.FacebookAuthProvider();
   
-    // auth.signInWithPopup(provider).then(result=>{
-    //   console.log(result)
-    // }); 
+  //   const provider = new firebase.auth.FacebookAuthProvider();
+  //   auth.signInWithPopup(provider).then(result=>{
+  //     console.log(result)
+  //   }); 
+  
+  function handleCreateRoom() {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+    })
 
     navigate('/rooms/new');
   }
