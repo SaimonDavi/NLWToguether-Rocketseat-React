@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { auth } from '../services/firebase'
@@ -9,25 +10,23 @@ import googleIconImg from '../assets/images/google-icon.svg'
 
 import { Button } from '../components/Button'
 
+import { TextContext } from '../App';
+
 import '../styles/auth.css'
 
 export function Home(){
   const navigate = useNavigate();
-  
-  //   const provider = new firebase.auth.FacebookAuthProvider();
-  //   auth.signInWithPopup(provider).then(result=>{
-  //     console.log(result)
-  //   }); 
-  
+
+  const value = useContext(TextContext);
+
   function handleCreateRoom() {
     const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
-    .then((result) => {
+    signInWithPopup(auth, provider).then((result) => {
       console.log(result);
+      navigate('/rooms/new');
     })
 
-    navigate('/rooms/new');
   }
 
   return(
@@ -38,6 +37,7 @@ export function Home(){
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
       <main>
+        <h1>{value}</h1>
         <div className="main-content">
           <img src={logoImg} alt="Letmeask" />
           <button onClick={handleCreateRoom} className="create-room">
