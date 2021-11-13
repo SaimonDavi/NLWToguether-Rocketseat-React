@@ -1,32 +1,27 @@
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import { auth } from '../services/firebase'
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
 import googleIconImg from '../assets/images/google-icon.svg'
 
-import { Button } from '../components/Button'
-
-import { TextContext } from '../App';
-
 import '../styles/auth.css'
+
+import { Button } from '../components/Button'
+import { useAuth } from '../hooks/useAuth';
+
 
 export function Home(){
   const navigate = useNavigate();
 
-  const value = useContext(TextContext);
+  const { user, signInWithGoogle } = useAuth()
 
-  function handleCreateRoom() {
-    const provider = new GoogleAuthProvider();
+  async function handleCreateRoom() {
+    
+    if(!user){
+      await signInWithGoogle()
+    }
 
-    signInWithPopup(auth, provider).then((result) => {
-      console.log(result);
-      navigate('/rooms/new');
-    })
-
+    navigate('/rooms/new');
   }
 
   return(
@@ -37,7 +32,6 @@ export function Home(){
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
       <main>
-        <h1>{value}</h1>
         <div className="main-content">
           <img src={logoImg} alt="Letmeask" />
           <button onClick={handleCreateRoom} className="create-room">

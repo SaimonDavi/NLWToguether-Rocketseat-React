@@ -26,11 +26,11 @@ const firebaseConfig = {
 };
 
 //firebase.initializeApp(firebaseConfig);
-const app = initializeApp(firebaseConfig);
+const firebase = initializeApp(firebaseConfig);
 
 //const auth = firebase.auth();
 //const database = firebase.database();
 const database = getDatabase();
 const auth = getAuth();
 
-export { app, auth, database };
+export { firebase, auth, database };
