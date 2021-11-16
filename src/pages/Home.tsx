@@ -9,8 +9,7 @@ import '../styles/auth.css'
 import { Button } from '../components/Button'
 import { useAuth } from '../hooks/useAuth';
 
-
-export function Home(){
+export function Home() {
   const navigate = useNavigate();
 
   const { user, signInWithGoogle } = useAuth()
