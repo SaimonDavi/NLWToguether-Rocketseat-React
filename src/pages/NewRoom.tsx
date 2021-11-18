@@ -5,19 +5,31 @@ import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
 
 import { Button } from '../components/Button'
-//import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../hooks/useAuth'
+
+import { database } from '../services/firebase'
+import { ref, push } from "firebase/database";
 
 import '../styles/auth.css'
 
 export function NewRoom(){
-//const { user } = useAuth();
+  const { user } = useAuth();
 
-  const [ newRoom , setNewRoom ] = useState('');
+  const [newRoom, setNewRoom] = useState('');
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
 
-    console.log(newRoom);
+    if(newRoom.trim() === '') {
+      return;
+    }
+
+    const roomRef = ref(database,'rooms');
+
+    const firebaseRoom = await push(roomRef, {
+      title: newRoom,
+      authorId: user?.id,
+    });
   }
 
   return(
