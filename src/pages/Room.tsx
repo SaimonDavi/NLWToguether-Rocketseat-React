@@ -5,6 +5,8 @@ import logoImg from '../assets/images/logo.svg';
 
 import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
+import { Question } from '../components/Question';
+
 import { useAuth } from '../hooks/useAuth'
 import { database } from '../services/firebase';
 import { ref, push, onValue} from "firebase/database";
@@ -26,7 +28,7 @@ type FirebaseQuestions = Record<string, {
   isHighLighted: boolean;
 }>
 
-type Question = {
+type QuestionType = {
   author: {
     name: string;
     avatar: string;
@@ -43,7 +45,7 @@ export function Room() {
   const roomId = params.id;
 
   const [newQuestion, setNewQuestion] = useState('');
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [title, setTitle] = useState('');
 
   async function handleSendQuestion(event: FormEvent) {
@@ -127,6 +129,18 @@ export function Room() {
             <Button type="submit" disabled={!user} >Enviar pergunta</Button>
           </div>
         </form>
+
+        <div className="question-list">
+          {questions.map(question => {
+            return (
+              <Question
+                // key={question.id}
+                content={question.content}
+                author={question.author}
+              />
+            );
+          })}
+        </div>
 
         {JSON.stringify(questions)}
       </main>
