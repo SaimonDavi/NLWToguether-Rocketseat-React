@@ -29,6 +29,7 @@ type FirebaseQuestions = Record<string, {
 }>
 
 type QuestionType = {
+  id: string,
   author: {
     name: string;
     avatar: string;
@@ -131,10 +132,10 @@ export function Room() {
         </form>
 
         <div className="question-list">
-          {questions.map(question => {
+          {questions.map( question => {
             return (
               <Question
-                // key={question.id}
+                key={question.id}
                 content={question.content}
                 author={question.author}
               />
@@ -142,7 +143,7 @@ export function Room() {
           })}
         </div>
 
-        {JSON.stringify(questions)}
+        {/* {JSON.stringify(questions.values)} */}
       </main>
     </div>
   );
