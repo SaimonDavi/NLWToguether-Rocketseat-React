@@ -11,7 +11,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 
 import { database } from '../services/firebase';
-import { ref, push} from "firebase/database";
+import { ref, push, remove} from "firebase/database";
 
 import '../styles/room.css';
 
@@ -53,12 +53,17 @@ export function Room() {
     setNewQuestion('');
   }
 
-  async function handleLikeQuestion(questionId: string) {
-    const newLike = ref(database,`rooms/${roomId}/questions/${questionId}/likes`);
-    
-    await push(newLike, {
-      authorId: user?.id,
-    })
+  async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+    if(likeId) {
+      //remover o like
+      const newLikeRemove = ref(database,`rooms/${roomId}/questions/${questionId}/likes/${likeId}`);
+      await remove(newLikeRemove);
+    } else {
+        const newLike = ref(database,`rooms/${roomId}/questions/${questionId}/likes`);
+        await push(newLike, {
+        authorId: user?.id,
+      });
+    }
 
   }
 
@@ -103,10 +108,10 @@ export function Room() {
                 author={question.author}
               >
                 <button
-                  className={`like-button ${question.hasLiked ? 'liked' : ''}`}
+                  className={`like-button ${question.likeId ? 'liked' : ''}`}
                   type="button"
                   arial-label="Marcar como gostei"
-                  onClick={() => handleLikeQuestion(question.id)}
+                  onClick={() => handleLikeQuestion(question.id, question.likeId)}
                 >
                   { question.likeCount > 0 && <span>{question.likeCount}</span> }
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
