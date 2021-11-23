@@ -15,7 +15,7 @@ function App() {
       <AuthContextProvider>
         <Routes>
           <Route path='/*' element={<Home/>} />
-          <Route path='/rooms/new*' element={<NewRoom/>} />
+          <Route path='/rooms/new/*' element={<NewRoom/>} />
           <Route path='/rooms/:id' element={<Room/>} />
           <Route path='admin/rooms/:id' element={<AdminRoom/>} />
         </Routes>
