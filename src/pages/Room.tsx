@@ -55,7 +55,6 @@ export function Room() {
 
   async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
     if(likeId) {
-      //remover o like
       const newLikeRemove = ref(database,`rooms/${roomId}/questions/${questionId}/likes/${likeId}`);
       await remove(newLikeRemove);
     } else {
