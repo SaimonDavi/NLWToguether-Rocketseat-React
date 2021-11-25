@@ -25,6 +25,11 @@
   align-items: center;
 }
 
+.question footer div {
+  display: flex;
+  gap: 16px;
+}
+
 .question footer .user-info img {
   width: 32px;
   height: 32px;

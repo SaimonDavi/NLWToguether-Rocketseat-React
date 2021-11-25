@@ -9,11 +9,15 @@ type QuestionProps = {
     avatar: string;
   }
   children?: ReactNode;
+  isAnswered?: boolean;
+  isHighLighted?: boolean;
 }
 
 export function Question ({
   content,
   author,
+  isAnswered = false,
+  isHighLighted = false,
   children,
 }: QuestionProps) {
   return (
