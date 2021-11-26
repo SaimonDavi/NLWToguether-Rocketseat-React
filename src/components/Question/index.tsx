@@ -21,12 +21,16 @@ export function Question ({
   children,
 }: QuestionProps) {
   return (
-    <div className="question">
+    <div className={`question ${ isAnswered ? 'answered' : ''} 
+                              ${ isHighLighted && !isAnswered  ? 'highLighted' : ''}`}>
       <p>{content}</p>
       <footer>
         <div className="user-info">
           <img src={author.avatar} alt={author.name} />
-          <span>{author.name}</span>
+          <span className={`${ isAnswered ? 'answeredSpan' : ''} 
+                            ${ isHighLighted && !isAnswered ? 'highLightedSpan' : ''}`}>
+            {author.name}
+          </span>
         </div>
         <div>
           {children}
