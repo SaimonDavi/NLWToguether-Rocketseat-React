@@ -7,8 +7,6 @@ import { AdminRoom } from './pages/AdminRoom';
 
 import { AuthContextProvider } from './contexts/AuthContext';
 
-
-
 function App() {
   return (
     <BrowserRouter>

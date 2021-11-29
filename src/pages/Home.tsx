@@ -1,17 +1,18 @@
-import { useNavigate } from 'react-router-dom'
-import { FormEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
 
-import illustrationImg from '../assets/images/illustration.svg'
-import logoImg from '../assets/images/logo.svg'
-import googleIconImg from '../assets/images/google-icon.svg'
+import illustrationImg from '../assets/images/illustration.svg';
+import logoImg from '../assets/images/logo.svg';
+import googleIconImg from '../assets/images/google-icon.svg';
 
-import { database } from '../services/firebase'
+import { database } from '../services/firebase';
 import { ref, get } from "firebase/database";
 
-import { Button } from '../components/Button'
-import { useAuth } from '../hooks/useAuth'
+import { Button } from '../components/Button';
 
-import '../styles/auth.css'
+import { useAuth } from '../hooks/useAuth';
+
+import '../styles/auth.css';
 
 export function Home() {
   const navigate = useNavigate();

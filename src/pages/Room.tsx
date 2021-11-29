@@ -97,7 +97,6 @@ export function Room() {
             <Button type="submit" disabled={!user} >Enviar pergunta</Button>
           </div>
         </form>
-
         <div className="question-list">
           {questions.map( question => {
             return (
