@@ -47,7 +47,17 @@ export function Home() {
       return;
     }
 
-    navigate(`/rooms/${roomCode}`);
+    const authorRef = await get(ref(database, `rooms/${roomCode}/authorId`));
+
+    console.log(authorRef.val())
+    console.log(user?.id)
+
+    if(authorRef.val() === user?.id) {
+      navigate(`/admin/rooms/${roomCode}`);
+    } else {
+      navigate(`/rooms/${roomCode}`);
+    }
+
   }
 
   return(
