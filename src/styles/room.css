@@ -13,6 +13,7 @@
 
 #page-room .content img {
   max-height: 45px;
+  cursor: pointer;
 }
 
 #page-room .content div {

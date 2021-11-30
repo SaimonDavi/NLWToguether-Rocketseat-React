@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import logoImg from '../assets/images/logo.svg';
 
@@ -20,6 +21,7 @@ type RoomParams = {
 }
 
 export function Room() {
+  const navigate = useNavigate();
   const { user, signInWithGoogle } = useAuth();
   const [newQuestion, setNewQuestion] = useState('');
   const params = useParams() as RoomParams;
@@ -78,7 +80,7 @@ export function Room() {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="Letmeask" />
+          <img src={logoImg} alt="Letmeask" onClick={() => {navigate('/')}} />
           <RoomCode code={roomId}/>
         </div>
       </header>
